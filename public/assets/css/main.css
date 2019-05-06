@@ -1,0 +1,45 @@
+.login-page {
+    background: url("../../assets/img/login.jpg") no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+.navbar.header-nav {
+    position: absolute;
+    right: 0;
+    left: 0;
+    border-radius: 0;
+    background-color: transparent;
+    color: #fff;
+    border: none;
+}
+.logout-btn:hover {
+    color: #e91e63!important;
+}
+.full-page > .content {
+    min-height: 100vh;
+}
+
+.card-avatar.profile-avatar {
+    display: block;
+    width: 130px;
+    height: 130px;
+    position: absolute;
+    right: 15px;
+    top: -15px;
+    z-index: 99;
+}
+.card-avatar.profile-avatar img{
+    border-radius: 50%;
+}
+.card-avatar.profile-avatar a{
+    padding: 5px;
+    background-color: #e53371;
+    right: 0;
+    position: absolute;
+    bottom: 0;
+    border-radius: 3px;
+    color: #fff;
+}
+.card-avatar.profile-avatar a:hover{
+    box-shadow: 0 14px 26px -12px rgba(233, 30, 99, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(233, 30, 99, 0.2);
+}
