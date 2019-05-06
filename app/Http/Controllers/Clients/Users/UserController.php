@@ -45,9 +45,20 @@ class UserController extends Controller
 
     public function getCountriesList()
     {
-        $countries = $this->country->all()->toArray();
+        $countries = $this->country->all()->take(15);
 
         return $countries;
+    }
+
+    public function getCitiesList(Request $request)
+    {
+        $data = $request['countryId'];
+        if (!$data) {
+            return response()->json(['error' => 'Choose country...']);
+        }
+        $cities = $this->city->where('country_id', '=', $request['countryId'])->get()->take(15);
+
+        return $cities;
     }
 
     public function updateOwnProfile(Request $request)
@@ -57,9 +68,21 @@ class UserController extends Controller
 
         $validation = UserProfileValidations::updateUserProfile($data);
 
-        if($validation->fails()) {
+        if ($validation->fails()) {
             return response()->json(['error' => $validation->errors()]);
         }
 
+        $newProfileData = [
+            'first_name' => $data['profileName'],
+            'last_name' => $data['profileSurname'],
+            'address' => $data['profileAddress'],
+            'city' => $data['profileCity'],
+            'country' => $data['profileCountry'],
+            'phone' => $data['profilePhone'],
+        ];
+
+        $this->profile->where('user_id', '=', Auth::id())->update($newProfileData);
+
+        return response()->json(['success' => true]);
     }
 }
