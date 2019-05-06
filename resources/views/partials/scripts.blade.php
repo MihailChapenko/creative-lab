@@ -39,4 +39,10 @@
 <!-- Material Dashboard javascript methods -->
 <script src="{{ asset('assets/js/material-dashboard.js') }}"></script>
 
+{{-- Helpers--}}
+<script src="{{ asset('helpers/ajax-token.js') }}"></script>
+<script src="{{ asset('helpers/clear_validations.js') }}"></script>
+<script src="{{ asset('helpers/clear_modal_input.js') }}"></script>
+
+{{--Users--}}
 <script src="{{ asset('js/crm/user_profile.js') }}"></script>

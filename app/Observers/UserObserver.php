@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\User;
-use App\Repositories\EloquentModel\UserProfile as UserProfile;
+use App\EloquentModel\UserProfile as UserProfile;
 
 class UserObserver
 {
@@ -15,8 +15,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        $userId = $user['id'];
-//        new UserProfile('user_id', '=', $userId);
+        UserProfile::create(['user_id' => $user->id]);
     }
 
     /**

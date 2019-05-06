@@ -40,7 +40,7 @@
                                             </tr>
                                             </tfoot>
                                             <tbody>
-                                            @foreach($users as $user)
+                                            @foreach($usersList as $user)
                                                 <tr id-user="{{ $user['user_id'] }}">
                                                     <td>{{ $user['name'] }}</td>
                                                     <td>{{ $user['email'] }}</td>

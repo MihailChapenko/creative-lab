@@ -22,7 +22,7 @@ class CreateUsersProfiles extends Migration
             $table->string('city')->nullable();
             $table->string('country')->nullable();
             $table->string('phone')->unique()->nullable();
-            $table->string('img_url')->nullable();
+            $table->string('img_url')->default('default_img/user_avatar.png');
             $table->timestamps();
         });
     }

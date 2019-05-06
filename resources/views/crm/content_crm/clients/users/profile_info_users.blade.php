@@ -11,8 +11,8 @@
                         <div class="col-md-8">
                             <div class="card">
                                 <div class="card-avatar profile-avatar">
-                                    <img class="img" src="../../assets/img/faces/marc.jpg" />
-                                    <a href="#">
+                                    <img class="img" src="{{ $profile->img_url }}" alt="avatar" />
+                                    <a href="#" id="changeAvatarBtn">
                                         <i class="material-icons">edit</i>
                                     </a>
                                 </div>
@@ -24,29 +24,29 @@
                                     <form>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Username</label>
-                                                    <input type="text" class="form-control">
+                                                <div id="profileLoginDiv" class="form-group label-floating">
+                                                    <label class="control-label">Name</label>
+                                                    <input id="profileLogin" type="text" class="form-control" value="{{ $profile->name }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Email address</label>
-                                                    <input type="email" class="form-control">
+                                                <div id="profileEmailDiv" class="form-group label-floating">
+                                                    <label class="control-label">Email</label>
+                                                    <input id="profileEmail" type="email" class="form-control" value="{{ $profile->email }}">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group label-floating">
-                                                    <label class="control-label">Fist Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <label class="control-label">First Name</label>
+                                                    <input id="profileName" type="text" class="form-control" value="{{ $profile->first_name }}">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Last Name</label>
-                                                    <input type="text" class="form-control">
+                                                    <input id="profileSurname" type="text" class="form-control" value="{{ $profile->last_name }}">
                                                 </div>
                                             </div>
                                         </div>
@@ -54,31 +54,41 @@
                                             <div class="col-md-12">
                                                 <div class="form-group label-floating">
                                                     <label class="control-label">Address</label>
-                                                    <input type="text" class="form-control">
+                                                    <input id="profileAddress" type="text" class="form-control" value="{{ $profile->address }}">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">City</label>
-                                                    <input type="text" class="form-control">
+                                                <div class="form-group">
+                                                    <select id="profileCountry" class="selectpicker" data-live-search="true" data-style="select-with-transition" title="Choose Country" data-size="7">
+                                                        <option {{($profile->country) ? 'selected' : ''}}>{{ $profile->country }}</option>
+                                                        <option value="" disabled>Choose Country</option>
+                                                        <option value="2">Paris </option>
+                                                        <option value="3">Bucharest</option>
+                                                        <option value="4">Rome</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Country</label>
-                                                    <input type="text" class="form-control">
+                                                <div class="form-group">
+                                                    <select id="profileCity" class="selectpicker" data-live-search="true" data-style="select-with-transition" title="Choose City" data-size="7">
+                                                        <option {{($profile->city) ? 'selected' : ''}}>{{ $profile->city }}</option>
+                                                        <option value="" disabled>Choose City</option>
+                                                        <option value="2">Paris </option>
+                                                        <option value="3">Bucharest</option>
+                                                        <option value="4">Rome</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="form-group label-floating">
-                                                    <label class="control-label">Phone</label>
-                                                    <input type="text" class="form-control">
+                                                <div id="profilePhoneDiv" class="form-group label-floating">
+                                                    <label class="control-label">+38 (123) 456 78 90</label>
+                                                    <input id="profilePhone" type="text" class="form-control" value="{{ $profile->phone }}">
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-rose pull-right">Update Profile</button>
+                                        <a id="updateProfile" class="btn btn-rose pull-right">Update Profile</a>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -90,4 +100,5 @@
             @include('partials.footer')
         </div>
     </div>
+    @include('crm.content_crm.clients.users.users_modals')
 @endsection

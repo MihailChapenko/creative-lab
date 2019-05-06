@@ -44,3 +44,12 @@
 .card-avatar.profile-avatar a:hover{
     box-shadow: 0 14px 26px -12px rgba(233, 30, 99, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(233, 30, 99, 0.2);
 }
+.card.upload-avatar {
+    margin: 0;
+}
+#profilePhoneDiv {
+    margin-top: 28px;
+}
+.validation-error {
+    color: #f44336;
+}

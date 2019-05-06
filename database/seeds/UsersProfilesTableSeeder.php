@@ -1,11 +1,10 @@
 <?php
 
 use Carbon\Carbon;
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class UsersTableSeeder extends Seeder
+class UsersProfilesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,11 +13,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('users_profiles')->insert([
             'id' => '1',
-            'name' => 'admin',
-            'email' => 'admin@gmail.com',
-            'password' => bcrypt('secret'),
+            'user_id' => '1',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);

@@ -17,17 +17,18 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
     <div class="sidebar-wrapper ps-container ps-theme-default ps-active-y" data-ps-id="8696c6e9-2af5-c53a-e8e7-97f9bb83708a">
         <div class="user">
             <div class="photo">
-                <img src="../assets/img/faces/avatar.jpg">
+                <img src="{{ $userInfo->img_url }}" alt="avatar">
             </div>
             <div class="info">
+                <input type="hidden" id-user="{{ $userInfo->id }}">
                 <a data-toggle="collapse" href="#collapseExample" class="collapsed">
-                    Tania Andrew
+                    {{ $userInfo->name }}
                     <b class="caret"></b>
                 </a>
                 <div class="collapse" id="collapseExample">
                     <ul class="nav">
                         <li>
-                            <a href="{{ url('/user_profile') }}">Edit Profile</a>
+                            <a href="{{ url('/get_user_profile') }}">Edit Profile</a>
                         </li>
                     </ul>
                 </div>
