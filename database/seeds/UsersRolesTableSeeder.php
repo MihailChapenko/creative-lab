@@ -13,7 +13,8 @@ class UsersRolesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users_roles')->insert([
+        DB::table('users_roles')->insert(
+            [
                 'id' => '1',
                 'role' => 'admin',
                 'created_at' => Carbon::now(),
@@ -36,6 +37,7 @@ class UsersRolesTableSeeder extends Seeder
                 'role' => 'smm',
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
-            ]);
+            ]
+        );
     }
 }
