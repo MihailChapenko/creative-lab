@@ -62,22 +62,16 @@
                                             <div class="col-md-4">
                                                 <div class="form-group">
                                                     <select id="profileCountry" class="selectpicker" data-live-search="true" data-style="select-with-transition" title="Choose Country" data-size="7">
-                                                        <option {{($profile->country) ? 'selected' : ''}}>{{ $profile->country }}</option>
+{{--                                                        <option {{($profile->country) ? 'selected' : ''}}>{{ $profile->country }}</option>--}}
                                                         <option value="" disabled>Choose Country</option>
-                                                        <option value="2">Paris </option>
-                                                        <option value="3">Bucharest</option>
-                                                        <option value="4">Rome</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
-                                                <div class="form-group">
+                                                <div id="profileCityDiv" class="form-group">
                                                     <select id="profileCity" class="selectpicker" data-live-search="true" data-style="select-with-transition" title="Choose City" data-size="7">
-                                                        <option {{($profile->city) ? 'selected' : ''}}>{{ $profile->city }}</option>
+{{--                                                        <option {{($profile->city) ? 'selected' : ''}}>{{ $profile->city }}</option>--}}
                                                         <option value="" disabled>Choose City</option>
-                                                        <option value="2">Paris </option>
-                                                        <option value="3">Bucharest</option>
-                                                        <option value="4">Rome</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -89,6 +83,41 @@
                                             </div>
                                         </div>
                                         <a id="updateProfile" class="btn btn-rose pull-right">Update Profile</a>
+                                        <div class="clearfix"></div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="card">
+                                <div class="card-header card-header-icon" data-background-color="rose">
+                                    <i class="material-icons">fingerprint</i>
+                                </div>
+                                <div class="card-content">
+                                    <form>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div id="profileOldPassDiv" class="form-group label-floating">
+                                                    <label class="control-label">Old Password</label>
+                                                    <input id="profileOldPass" type="text" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div id="profileNewPassDiv" class="form-group label-floating">
+                                                    <label class="control-label">New Password</label>
+                                                    <input id="profileNewPass" type="password" class="form-control">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div id="profileNewPassConfirmDiv" class="form-group label-floating">
+                                                    <label class="control-label">New Password Confirm</label>
+                                                    <input id="profileNewPassConfirm" type="password" class="form-control">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a id="updateProfile" class="btn btn-rose pull-right">Change Password</a>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>

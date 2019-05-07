@@ -19,7 +19,7 @@ class UserProfile extends Model
     ];
 
     /**
-     * The attributes that are mass assignable.
+     * Return user profile info.
      *
      * @return array
      */

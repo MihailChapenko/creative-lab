@@ -18,7 +18,7 @@ class UserProfileValidations
             'profileAddress' => 'nullable|string|max:250',
             'profileCountry' => 'nullable|string|max:50',
             'profileCity' => 'nullable|string|max:50',
-            'profilePhone' => 'nullable|regex:/(0)[0-9]{9}/|unique:users,phone,' .$data['profilePhone']
+            'profilePhone' => 'nullable|regex:/(0)[0-9]{9}/|unique:users_profiles,phone,' .$data['user_id']
         ]);
     }
 }
