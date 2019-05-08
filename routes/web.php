@@ -19,4 +19,6 @@ Route::domain(env('SM_DOMAIN_CRM'))->group(function() {
    Route::post('/update_own_profile', 'Clients\Users\UserController@updateOwnProfile')->middleware('auth');
    Route::post('/get_countries_list', 'Clients\Users\UserController@getCountriesList')->middleware('auth');
    Route::post('/get_cities_list', 'Clients\Users\UserController@getCitiesList')->middleware('auth');
+   Route::post('/update_own_avatar', 'Clients\Users\UserController@updateOwnAvatar')->middleware('auth');
+   Route::post('/search_country', 'Clients\Users\UserController@searchCountry')->middleware('auth');
 });

@@ -60,18 +60,20 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div class="form-group">
+                                                <div id="profileCountryBox" class="form-group">
                                                     <select id="profileCountry" class="selectpicker" data-live-search="true" data-style="select-with-transition" title="Choose Country" data-size="7">
-{{--                                                        <option {{($profile->country) ? 'selected' : ''}}>{{ $profile->country }}</option>--}}
-                                                        <option value="" disabled>Choose Country</option>
+                                                        @if (!empty($profile->country))
+                                                            <option value="{{$profile->country}}" selected>{{ $profile->country }}</option>
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-md-4">
                                                 <div id="profileCityDiv" class="form-group">
                                                     <select id="profileCity" class="selectpicker" data-live-search="true" data-style="select-with-transition" title="Choose City" data-size="7">
-{{--                                                        <option {{($profile->city) ? 'selected' : ''}}>{{ $profile->city }}</option>--}}
-                                                        <option value="" disabled>Choose City</option>
+                                                        @if (!empty($profile->city))
+                                                            <option value="{{$profile->city}}" selected>{{ $profile->city }}</option>
+                                                        @endif
                                                     </select>
                                                 </div>
                                             </div>
@@ -101,7 +103,7 @@
                                             <div class="col-md-12">
                                                 <div id="profileOldPassDiv" class="form-group label-floating">
                                                     <label class="control-label">Old Password</label>
-                                                    <input id="profileOldPass" type="text" class="form-control">
+                                                    <input id="profileOldPass" type="password" class="form-control">
                                                 </div>
                                             </div>
                                             <div class="col-md-12">

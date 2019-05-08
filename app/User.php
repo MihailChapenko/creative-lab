@@ -65,4 +65,9 @@ class User extends Authenticatable
 
         return $usersList;
     }
+
+    public function updateUserData($id)
+    {
+        return $this->where('id', '=', $id);
+    }
 }
