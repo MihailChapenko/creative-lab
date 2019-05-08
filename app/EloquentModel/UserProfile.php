@@ -31,4 +31,9 @@ class UserProfile extends Model
         return $profile;
     }
 
+    public function updateOwnProfile($id)
+    {
+        return $this->where('user_id', '=', $id);
+    }
+
 }

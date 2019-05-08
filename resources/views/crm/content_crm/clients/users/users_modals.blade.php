@@ -8,6 +8,7 @@
                 <div class="card-content">
                     <h4 class="card-title">Change Avatar</h4>
                     <form class="text-center">
+                        @csrf
                         <div class="row">
                             <div class="col-md-12 m-auto">
                                 <div class="fileinput fileinput-new text-center" data-provides="fileinput">

@@ -45,9 +45,18 @@ class UserController extends Controller
 
     public function getCountriesList()
     {
-        $countries = $this->country->all()->take(15);
+        $countries = $this->country->get()->random(10);
 
         return $countries;
+    }
+
+    public function searchCountry(Request $request)
+    {
+        $countryName = $request->input('country');
+
+        $countriesList = $this->country->searchCountry($countryName)->get();
+
+        return response()->json(['success' => true, 'countries' => $countriesList]);
     }
 
     public function getCitiesList(Request $request)
@@ -56,7 +65,7 @@ class UserController extends Controller
         if (!$data) {
             return response()->json(['error' => 'Choose country...']);
         }
-        $cities = $this->city->where('country_id', '=', $request['countryId'])->get()->take(15);
+        $cities = $this->city->getCitiesList($request['countryId'])->get()->random(10);
 
         return $cities;
     }
@@ -72,6 +81,11 @@ class UserController extends Controller
             return response()->json(['error' => $validation->errors()]);
         }
 
+        $newUserData = [
+            'name' => $data['profileLogin']  ,
+            'email' => $data['profileEmail']
+        ];
+
         $newProfileData = [
             'first_name' => $data['profileName'],
             'last_name' => $data['profileSurname'],
@@ -81,8 +95,10 @@ class UserController extends Controller
             'phone' => $data['profilePhone'],
         ];
 
-        $this->profile->where('user_id', '=', Auth::id())->update($newProfileData);
+        $this->user->updateUserData(Auth::id())->update($newUserData);
+        $this->profile->updateOwnProfile(Auth::id())->update($newProfileData);
 
         return response()->json(['success' => true]);
     }
+
 }
