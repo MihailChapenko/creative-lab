@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="c6299310-9ca7-4bf3-8b77-5ef02ca989bf" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/EloquentModel/City.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/EloquentModel/City.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/EloquentModel/Country.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/EloquentModel/Country.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/EloquentModel/UserProfile.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/EloquentModel/UserProfile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Clients/Users/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Clients/Users/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersProfilesTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersProfilesTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersRolesRelationsTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersRolesRelationsTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UsersTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/crm/user_profile.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/crm/user_profile.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/crm/content_crm/clients/users/profile_info_users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/crm/content_crm/clients/users/profile_info_users.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="c6299310-9ca7-4bf3-8b77-5ef02ca989bf" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/node_modules/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,8 +44,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/public/js/crm/user_profile.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+            <state relative-caret-position="360">
+              <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -472,11 +459,10 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="76904000" />
+    <option name="totallyTimeSpent" value="77128000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49916804" weight="0.20469798" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -861,8 +847,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/public/js/crm/user_profile.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="16" lean-forward="true" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+        <state relative-caret-position="360">
+          <caret line="21" column="19" lean-forward="true" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
         </state>
       </provider>
     </entry>
