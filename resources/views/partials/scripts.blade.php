@@ -46,3 +46,4 @@
 
 {{--Users--}}
 <script src="{{ asset('js/crm/user_profile.js') }}"></script>
+<script src="{{ asset('js/crm/user_func.js') }}"></script>
