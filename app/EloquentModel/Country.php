@@ -8,8 +8,15 @@ class Country extends Model
 {
     protected $table = 'countries';
 
+    /**
+     * return searchable country
+     *
+     * @param $name
+     * @return mixed
+     */
     public function searchCountry($name)
     {
-        return $this->where('name', 'like', $name . '%');
+        return $this->where('name', 'like', $name . '%')
+                    ->orWhere('name', '=', $name);
     }
 }

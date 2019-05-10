@@ -12,6 +12,7 @@ use App\EloquentModel\{
     City
 };
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class UserController extends Controller
@@ -21,6 +22,13 @@ class UserController extends Controller
     private $profile;
     private $country;
 
+    /**
+     * UserController constructor.
+     * @param User $user
+     * @param Profile $profile
+     * @param Country $country
+     * @param City $city
+     */
     public function __construct(User $user, Profile $profile, Country $country, City $city)
     {
         $this->user = $user;
@@ -29,6 +37,11 @@ class UserController extends Controller
         $this->profile = $profile;
     }
 
+    /**
+     * Return list of users
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function index()
     {
         $usersList = $this->user->getUsersList()->get();
@@ -36,6 +49,11 @@ class UserController extends Controller
         return view('crm.content_crm.clients.users.info_users', compact('usersList'));
     }
 
+    /**
+     * Return user profile
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function getUserProfile()
     {
         $profile = $this->profile->getUserProfile()->first();
@@ -43,6 +61,11 @@ class UserController extends Controller
         return view('crm.content_crm.clients.users.profile_info_users', compact('profile'));
     }
 
+    /**
+     * Return list of 10 randoms countries
+     *
+     * @return mixed
+     */
     public function getCountriesList()
     {
         $countries = $this->country->get()->random(10);
@@ -50,6 +73,12 @@ class UserController extends Controller
         return $countries;
     }
 
+    /**
+     * Return searchable country
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function searchCountry(Request $request)
     {
         $countryName = $request->input('country');
@@ -59,24 +88,50 @@ class UserController extends Controller
         return response()->json(['success' => true, 'countries' => $countriesList]);
     }
 
+    /**
+     * Return searchable city
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function searchCity(Request $request)
+    {
+        $data = $request->all();
+
+        $citiesList = $this->city->searchCity($data)->take(10)->get();
+
+        return response()->json(['success' => true, 'citiesList' => $citiesList]);
+    }
+
+    /**
+     * Return list of 10 searchable cities
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getCitiesList(Request $request)
     {
-        $data = $request['countryId'];
-        if (!$data) {
+        $data = $request->all();
+        if (!$data['countryId']) {
             return response()->json(['error' => 'Choose country...']);
         }
-        $cities = $this->city->getCitiesList($request['countryId'])->get()->random(10);
+        $cities = $this->city->getCitiesList($data)->take(10)->get();
 
         return $cities;
     }
 
+    /**
+     * Update user profile info
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function updateOwnProfile(Request $request)
     {
         $data = $request->all();
         $data['user_id'] = Auth::id();
 
         $validation = UserProfileValidations::updateUserProfile($data);
-
         if ($validation->fails()) {
             return response()->json(['error' => $validation->errors()]);
         }
@@ -101,4 +156,33 @@ class UserController extends Controller
         return response()->json(['success' => true]);
     }
 
+    /**
+     * Change user password
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function changeUserPass(Request $request)
+    {
+        $data = $request->all();
+
+        $validation = UserProfileValidations::changeUserPassword($data);
+        if ($validation->fails()) {
+            return response()->json(['error' => $validation->errors()]);
+        }
+
+        $passCheck = Hash::check($data['profileOldPass'], Auth::user()->password);
+
+        if(!$passCheck) {
+            return response()->json([ 'error' => ['profileOldPass' => 'Wrong old password']]);
+        }
+
+        $newPass = [
+            'password' => Hash::make($data['profileNewPass'])
+        ];
+
+        $this->user->updateUserData(Auth::id())->update($newPass);
+
+        return response()->json(['success' => true]);
+    }
 }
