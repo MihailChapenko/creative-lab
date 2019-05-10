@@ -13,6 +13,11 @@
                                 <div class="card-header card-header-icon" data-background-color="rose">
                                     <i class="material-icons">assignment</i>
                                 </div>
+                                <a id="addUserBtn" class="pull-right" href="#">
+                                    <div class="card-header card-header-icon" data-background-color="rose">
+                                        <p>Add User</p>
+                                    </div>
+                                </a>
                                 <div class="card-content">
                                     <div class="toolbar">
                                         <!--        Here you can write extra buttons/actions for the toolbar              -->
@@ -67,6 +72,7 @@
                 </div>
             </div>
             @include('partials.footer')
+            @include('crm.content_crm.clients.users.users_modals')
         </div>
     </div>
 @endsection
