@@ -1,11 +1,18 @@
 $(document).ready(function () {
+
+    /**
+     * Show change avatar modal
+     */
     $('#changeAvatarBtn').on('click', function () {
         $('#changeAvatar').modal('show');
     });
 
+    /**
+     * Show list of 10 randoms countries
+     */
     $('button[data-id="profileCountry"]').on('click', function () {
-        let nowCountry = $('#profileCountry option:selected').attr('id-country');
-        // $('#profileCountryBox').find('.bs-searchbox input').val(nowCountry);
+        let nowCountry = $('#profileCountry').val();
+        $('#profileCountryDiv').find('.bs-searchbox input').val(nowCountry);
 
         $.ajax({
             type: 'post',
@@ -29,8 +36,11 @@ $(document).ready(function () {
         })
     });
 
-    $('#profileCountryBox').on('keyup', '.bs-searchbox input', function () {
-        let nowCountry = $('#profileCountry option:selected').attr('id-country');
+    /**
+     * Search country by name
+     */
+    $('#profileCountryDiv').on('keyup', '.bs-searchbox input', function () {
+        let country = $('#profileCountryDiv').find('.bs-searchbox input').val();
 
         $.ajax({
             type: 'post',
@@ -38,17 +48,16 @@ $(document).ready(function () {
             data: {
                 country: country
             },
-            error: function(error) {
+            error: function (error) {
                 Sweetalert2({
                     type: 'error',
                     title: 'Oops...',
                     text: 'Reload the page please!'
                 });
             },
-            success: function(data) {
+            success: function (data) {
                 let country = '';
                 $(data.countries).each(function (index, value) {
-                    console.log(value);
                     country += `<option id-country="${value.id}" value="${value.name}">${value.name}</option>`;
                 });
                 $('#profileCountry').html(country);
@@ -58,16 +67,23 @@ $(document).ready(function () {
         });
     });
 
+    /**
+     * Show list of cities by country
+     */
     $('button[data-id="profileCity"]').on('click', function () {
         clearValidation();
         $('#profileCityDiv .dropdown-menu').css('display', 'block');
         let countryId = $('#profileCountry option:selected').attr('id-country');
+        console.log(countryId);
+        let city = $('#profileCity').val();
+        $('#profileCityDiv').find('.bs-searchbox input').val(city);
 
         $.ajax({
             type: 'post',
             url: 'get_cities_list',
             data: {
-                countryId: countryId
+                countryId: countryId,
+                city: city
             },
             error: function (error) {
                 Sweetalert2({
@@ -96,6 +112,44 @@ $(document).ready(function () {
         });
     });
 
+    /**
+     * Search city by name
+     */
+    $('#profileCityDiv').on('keyup', '.bs-searchbox input', function () {
+        let countryId = $('#profileCountry option:selected').attr('id-country');
+        let city = $('#profileCityDiv').find('.bs-searchbox input').val();
+
+        $.ajax({
+            type: 'post',
+            url: 'search_city',
+            data: {
+                city: city,
+                countryId: countryId
+            },
+            error: function (error) {
+                Sweetalert2({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Reload the page please!'
+                });
+            },
+            success: function (data) {
+                let cities = '';
+                $(data.citiesList).each(function (index, value) {
+                    console.log(value);
+                    cities += `<option id-city="${value.id}" value="${value.name}">${value.name}</option>`;
+                });
+                $('#profileCity').html(cities);
+                $('.selectpicker').selectpicker('refresh');
+                cities = '';
+            }
+        });
+    });
+
+
+    /**
+     *  Update user profile info
+     */
     $('#updateProfile').on('click', function () {
         clearValidation();
         let profileLogin = $('#profileLogin').val();
@@ -145,5 +199,49 @@ $(document).ready(function () {
                 }
             }
         })
+    });
+
+    /**
+     * Update user password
+     */
+    $('#updatePass').on('click', function() {
+        clearValidation();
+       let profileOldPass = $('#profileOldPass').val();
+       let profileNewPass = $('#profileNewPass').val();
+       let profileNewPass_confirmation = $('#profileNewPass_confirmation').val();
+
+       $.ajax({
+           type: 'post',
+           url: 'change_user_pass',
+           data: {
+               profileOldPass: profileOldPass,
+               profileNewPass: profileNewPass,
+               profileNewPass_confirmation: profileNewPass_confirmation
+           },
+           error: function(error) {
+               Sweetalert2({
+                   type: 'error',
+                   title: 'Oops...',
+                   text: 'Reload the page please!'
+               });
+           },
+           success: function(data) {
+               if(data.error) {
+                   $.each(data.error, function (index, value) {
+                       $('#' + index + 'Div').addClass('has-error');
+                       $('#' + index + 'Div').append('<span class="validation-error"><strong>' + value + '</strong></span>');
+                   });
+                   return false;
+               } else {
+                   swal({
+                       title: "Success",
+                       text: "Your password changed!",
+                       buttonsStyling: false,
+                       confirmButtonClass: "btn btn-success",
+                       type: "success"
+                   });
+               }
+           }
+       })
     });
 });

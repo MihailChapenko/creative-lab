@@ -60,10 +60,10 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-4">
-                                                <div id="profileCountryBox" class="form-group">
+                                                <div id="profileCountryDiv" class="form-group">
                                                     <select id="profileCountry" class="selectpicker" data-live-search="true" data-style="select-with-transition" title="Choose Country" data-size="7">
                                                         @if (!empty($profile->country))
-                                                            <option value="{{$profile->country}}" selected>{{ $profile->country }}</option>
+                                                            <option id-country="{{$profile->country_id}}" value="{{$profile->country}}" selected>{{ $profile->country }}</option>
                                                         @endif
                                                     </select>
                                                 </div>
@@ -113,13 +113,13 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-12">
-                                                <div id="profileNewPassConfirmDiv" class="form-group label-floating">
+                                                <div id="profileNewPass_confirmationDiv" class="form-group label-floating">
                                                     <label class="control-label">New Password Confirm</label>
-                                                    <input id="profileNewPassConfirm" type="password" class="form-control">
+                                                    <input id="profileNewPass_confirmation" type="password" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
-                                        <a id="updateProfile" class="btn btn-rose pull-right">Change Password</a>
+                                        <a id="updatePass" class="btn btn-rose pull-right">Change Password</a>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
