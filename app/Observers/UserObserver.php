@@ -32,12 +32,13 @@ class UserObserver
     /**
      * Handle the user "deleted" event.
      *
-     * @param  \App\User  $user
+     * @param \App\User $user
      * @return void
+     * @throws \Exception
      */
     public function deleted(User $user)
     {
-        //
+        UserProfile::delete($user->id);
     }
 
     /**

@@ -60,7 +60,8 @@ class User extends Authenticatable
     public function getUsersList()
     {
         $usersList = $this->join('users_profiles', 'users.id', '=', 'users_profiles.user_id')
-            ->select('users_profiles.user_id', 'users.name', 'users.email', 'users_profiles.phone',
+                          ->where('users.id', '!=', '1')
+                          ->select('users_profiles.user_id', 'users.name', 'users.email', 'users_profiles.phone',
                 'users_profiles.country', 'users_profiles.city', 'users_profiles.img_url');
 
         return $usersList;
