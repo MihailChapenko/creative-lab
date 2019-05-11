@@ -9,13 +9,27 @@ $(document).ready(function () {
     /**
      *
      */
-    $('#addUserSubmit').on('click', function() {
+    $('#addUserSubmit').on('click', function () {
         let userLogin = $('#addUserLogin').val();
         let userEmail = $('#addUserEmail').val();
-        let userPhone = $('#addUserPhone').val();
 
         $.ajax({
-           type: 'post'
+            type: 'post',
+            url: 'add_new_user',
+            data: {
+                userLogin: userLogin,
+                userEmail: userEmail,
+            },
+            error: function(error) {
+                Sweetalert2({
+                    type: 'error',
+                    title: 'Oops...',
+                    text: 'Reload the page please!'
+                });
+            },
+            success: function(data) {
+                console.log(data);
+            }
         });
     });
 });

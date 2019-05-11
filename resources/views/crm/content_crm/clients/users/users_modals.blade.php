@@ -7,7 +7,7 @@
                 </div>
                 <div class="card-content">
                     <h4 class="card-title">Change Avatar</h4>
-                    <form class="text-center">
+                    <form method="post" action="{{ url('update_own_avatar') }}" class="text-center">
                         @csrf
                         <div class="row">
                             <div class="col-md-12 m-auto">
@@ -20,8 +20,10 @@
                                         <span class="btn btn-round btn-rose btn-file">
                                             <span class="fileinput-new">Choose Photo</span>
                                             <span class="fileinput-exists">Change</span>
-                                            <input type="hidden"><input type="file" name="...">
-                                        <div class="ripple-container"></div></span>
+                                            <input type="hidden">
+                                            <input type="file" name="avatar">
+                                            <div class="ripple-container"></div>
+                                        </span>
                                         <br>
                                         <a href="#" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
                                     </div>
@@ -55,11 +57,6 @@
                         <div class="form-group label-floating is-empty">
                             <label class="control-label">Email address</label>
                             <input id="addUserEmail" type="email" class="form-control">
-                            <span class="material-input"></span>
-                        </div>
-                        <div class="form-group label-floating is-empty">
-                            <label class="control-label">+38(123)456 78 90</label>
-                            <input id="addUserPhone" type="text" class="form-control">
                             <span class="material-input"></span>
                         </div>
                     </form>

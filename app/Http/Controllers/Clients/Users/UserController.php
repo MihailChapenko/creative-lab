@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers\Clients\Users;
 
+use App\Services\Validations\UserCreateValidations;
 use App\Services\Validations\UserProfileValidations;
 use App\User;
+use Faker\Provider\Image;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\EloquentModel\{
@@ -12,7 +15,9 @@ use App\EloquentModel\{
     City
 };
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 
 
 class UserController extends Controller
@@ -182,6 +187,46 @@ class UserController extends Controller
         ];
 
         $this->user->updateUserData(Auth::id())->update($newPass);
+
+        return response()->json(['success' => true]);
+    }
+
+    public function updateOwnAvatar(Request $request)
+    {
+        if ($request->hasFile('photo')) {
+            $image      = $request->file('photo');
+            $fileName   = time() . '.' . $image->getClientOriginalExtension();
+
+            $img = Image::make($image->getRealPath());
+            $img->resize(120, 120, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+            $img->stream(); // <-- Key point
+
+            dd(1);
+            Storage::disk('local')->put('avatars' . '/' . $fileName, $img, 'public');
+
+            return redirect('crm.content_crm.clients.users.profile_info_users');
+        }
+        return response()->json([ 'error' => ['image' => 'Wrong image']]);
+    }
+
+    public function addNewUser(Request $request)
+    {
+        $data= $request->all();
+
+        $validation = UserCreateValidations::createUser($data);
+        if ($validation->fails()) {
+            return response()->json(['error' => $validation->errors()]);
+        }
+
+        $userData = [
+          'name' => $data['userLogin'],
+          'email' => $data['userEmail'],
+        ];
+
+        $this->user->create($userData);
 
         return response()->json(['success' => true]);
     }

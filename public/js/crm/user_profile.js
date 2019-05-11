@@ -7,7 +7,7 @@ $(document).ready(function () {
         $('#changeAvatar').modal('show');
     });
 
-    /**
+     /**
      * Show list of 10 randoms countries
      */
     $('button[data-id="profileCountry"]').on('click', function () {

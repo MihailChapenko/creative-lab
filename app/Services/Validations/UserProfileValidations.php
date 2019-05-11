@@ -17,7 +17,7 @@ class UserProfileValidations
     {
         return Validator::make($data, [
             'user_id' => 'required|exists:users,id',
-            'profileLogin' => 'required|string|max:250',
+            'profileLogin' => 'required|string|max:250|unique:users,name,' . $data['user_id'],
             'profileEmail' => 'required|string|email|max:30|unique:users,email,' . $data['user_id'],
             'profileName' => 'nullable|string|max:250',
             'profileSurname' => 'nullable|string|max:250',
